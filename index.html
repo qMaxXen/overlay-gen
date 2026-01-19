@@ -715,8 +715,11 @@
           setFont(fontSize);
           ctx.fillStyle = colorText;
           ctx.textAlign = 'center';
-          ctx.textBaseline = 'middle';
-          ctx.fillText(num, pixelX + pixelWidth/2, pixelY + pixelHeight/2);
+          ctx.textBaseline = 'alphabetic';
+          const metrics = ctx.measureText(num);
+          const textHeight = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent;
+          const textY = pixelY + pixelHeight/2 + metrics.actualBoundingBoxAscent - textHeight/2;
+          ctx.fillText(num, pixelX + pixelWidth/2, textY);
         }
 
         ctx.globalAlpha = 1;
