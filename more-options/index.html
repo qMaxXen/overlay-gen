@@ -105,23 +105,14 @@
         cursor: pointer;
         font-size: 14px;
 
-        transition: background-color 160ms ease, transform 160ms ease, box-shadow 160ms ease, color 160ms ease;
-        will-change: transform, box-shadow;
         box-shadow: 0 6px 14px rgba(59,102,173,0.12);
       }
 
       button.primary:not(:disabled):hover,
       button.primary:not(:disabled):focus-visible {
-        background-color: #2f5aa0;            
-        transform: translateY(-2px);
-        box-shadow: 0 10px 22px rgba(59,102,173,0.18);
+        background-color: #2f5aa0;
         outline: none;
         color: #fff;
-      }
-
-      button.primary:not(:disabled):active {
-        transform: translateY(0);
-        box-shadow: 0 6px 12px rgba(59,102,173,0.12);
       }
 
       button.ghost {
@@ -131,36 +122,18 @@
         padding: 8px 12px;
         border-radius: 8px;
         cursor: pointer;
-
-        transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease, color 160ms ease;
-        will-change: transform, background-color;
       }
 
       button.ghost:not(:disabled):hover,
       button.ghost:not(:disabled):focus-visible {
-        background-color: rgba(255,255,255,0.03);   
-        border-color: rgba(255,255,255,0.12);      
+        background-color: rgba(255,255,255,0.03);
+        border-color: rgba(255,255,255,0.12);
         color: white;
-        transform: translateY(-1px);
         outline: none;
       }
 
-      button.ghost:not(:disabled):active {
-        transform: translateY(0);
-        background-color: rgba(255,255,255,0.02);
-      }
-
-
       button:focus-visible {
         box-shadow: 0 0 0 3px rgba(59,102,173,0.18);
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        button.primary,
-        button.ghost {
-          transition: none;
-          transform: none;
-        }
       }
 
       .preview {
@@ -220,7 +193,7 @@
 	}
 	
 	.close-btn {
-	  position: static; /* remove absolute positioning */
+	  position: static; 
 	  font-size: 20px;
 	  background: transparent;
 	  border: none;
@@ -333,6 +306,14 @@
           </div>
 
           <div class="row">
+            <label for="overlayWidth">Overlay width</label>
+            <div class="slider-controls">
+              <input type="range" id="overlayWidth" value="60" min="10" max="60" aria-label="Overlay width"/>
+              <div class="value-badge" id="overlayWidthValue">60</div>
+            </div>
+          </div>
+
+          <div class="row">
             <label for="fontStyle">Font</label>
             <select id="fontStyle">
               <option value="Inter-400">Inter</option>
@@ -354,14 +335,6 @@
               <option value="Fira Code-700">Fira Code Bold</option>
               <option value="Source Sans Pro-400">Source Sans Pro</option>
               <option value="Source Sans Pro-700">Source Sans Pro Bold</option>
-            </select>
-          </div>
-
-          <div class="row">
-            <label for="overlayWidth">Overlay width</label>
-            <select id="overlayWidth">
-              <option value="60" selected>60</option>
-              <option value="30">30</option>
             </select>
           </div>
 
@@ -398,7 +371,8 @@
           { id: "pixelHeight", valueEl: "pixelHeightValue" },
           { id: "opacityPixels", valueEl: "opacityPixelsValue" },
           { id: "opacityText", valueEl: "opacityTextValue" },
-          { id: "textSize", valueEl: "textSizeValue" }
+          { id: "textSize", valueEl: "textSizeValue" },
+          { id: "overlayWidth", valueEl: "overlayWidthValue" }
         ];
 
         const textSizeSlider = document.getElementById("textSize");
@@ -439,13 +413,6 @@
 		    document.fonts.load(fontSpec).then(() => generateImage());
 		  });
 		}
-
-    const overlayWidthSelect = document.getElementById('overlayWidth');
-    if (overlayWidthSelect) {
-      overlayWidthSelect.addEventListener('change', () => {
-        if (typeof generateImage === 'function') generateImage();
-      });
-    }
 		
 		sliders.forEach((s) => {
 		  const slider = document.getElementById(s.id);
@@ -596,8 +563,13 @@
             const c2 = document.getElementById("colour2"); if (c2) c2.value = "#99cdf0";
             const ct = document.getElementById("colourText"); if (ct) ct.value = "#000000";
 
-            const overlayWidthSelect = document.getElementById("overlayWidth");
-            if (overlayWidthSelect) { overlayWidthSelect.value = "60"; }
+            const overlayWidthSlider = document.getElementById("overlayWidth");
+            if (overlayWidthSlider) {
+              overlayWidthSlider.value = 60;
+              const overlayWidthValue = document.getElementById("overlayWidthValue");
+              if (overlayWidthValue) overlayWidthValue.textContent = 60;
+              updateSliderBackground(overlayWidthSlider);
+            }
 
 			updateCanvasLabel();
 			  
