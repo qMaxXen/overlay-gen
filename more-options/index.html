@@ -341,7 +341,7 @@
           <div style="display:flex;gap:8px;align-items:center;margin-top:6px;">
             <button class="primary" id="downloadBtn" onclick="downloadImage()" disabled>Download</button>
             <button class="ghost" id="resetBtn" type="button">Reset</button>
-			<button class="ghost" id="toggleTransformBtn" type="button">Transform Settings</button>
+	      		<button class="ghost" id="toggleTransformBtn" type="button">Transform Settings</button>
           </div>
         </div>
       </aside>
@@ -405,14 +405,14 @@
           slider.style.background = `linear-gradient(90deg, var(--accent) ${pct}%, #d9d9d9 ${pct}%)`;
         }
 
-		const fontSelect = document.getElementById('fontStyle');
-		if (fontSelect) {
-		  fontSelect.addEventListener('change', () => {
-		    const fontStyle = getFontStyle();
-		    const fontSpec = `${fontStyle.style} ${fontStyle.weight} 40px "${fontStyle.family}"`;
-		    document.fonts.load(fontSpec).then(() => generateImage());
-		  });
-		}
+        const fontSelect = document.getElementById('fontStyle');
+        if (fontSelect) {
+          fontSelect.addEventListener('change', () => {
+            const fontStyle = getFontStyle();
+            const fontSpec = `${fontStyle.style} ${fontStyle.weight} 40px "${fontStyle.family}"`;
+            document.fonts.load(fontSpec).then(() => generateImage());
+          });
+        }
 		
 		sliders.forEach((s) => {
 		  const slider = document.getElementById(s.id);

@@ -105,23 +105,14 @@
         cursor: pointer;
         font-size: 14px;
 
-        transition: background-color 160ms ease, transform 160ms ease, box-shadow 160ms ease, color 160ms ease;
-        will-change: transform, box-shadow;
         box-shadow: 0 6px 14px rgba(59,102,173,0.12);
       }
 
       button.primary:not(:disabled):hover,
       button.primary:not(:disabled):focus-visible {
-        background-color: #2f5aa0;            
-        transform: translateY(-2px);
-        box-shadow: 0 10px 22px rgba(59,102,173,0.18);
+        background-color: #2f5aa0;
         outline: none;
         color: #fff;
-      }
-
-      button.primary:not(:disabled):active {
-        transform: translateY(0);
-        box-shadow: 0 6px 12px rgba(59,102,173,0.12);
       }
 
       button.ghost {
@@ -131,36 +122,19 @@
         padding: 8px 12px;
         border-radius: 8px;
         cursor: pointer;
-
-        transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease, color 160ms ease;
-        will-change: transform, background-color;
       }
 
       button.ghost:not(:disabled):hover,
       button.ghost:not(:disabled):focus-visible {
-        background-color: rgba(255,255,255,0.03);   
-        border-color: rgba(255,255,255,0.12);      
+        background-color: rgba(255,255,255,0.03);
+        border-color: rgba(255,255,255,0.12);
         color: white;
-        transform: translateY(-1px);
         outline: none;
-      }
-
-      button.ghost:not(:disabled):active {
-        transform: translateY(0);
-        background-color: rgba(255,255,255,0.02);
       }
 
 
       button:focus-visible {
         box-shadow: 0 0 0 3px rgba(59,102,173,0.18);
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        button.primary,
-        button.ghost {
-          transition: none;
-          transform: none;
-        }
       }
 
       .preview {
@@ -423,14 +397,14 @@
           slider.style.background = `linear-gradient(90deg, var(--accent) ${pct}%, #d9d9d9 ${pct}%)`;
         }
 
-		const fontSelect = document.getElementById('fontStyle');
-		if (fontSelect) {
-		  fontSelect.addEventListener('change', () => {
-		    const fontStyle = getFontStyle();
-		    const fontSpec = `${fontStyle.style} ${fontStyle.weight} 40px "${fontStyle.family}"`;
-		    document.fonts.load(fontSpec).then(() => generateImage());
-		  });
-		}
+        const fontSelect = document.getElementById('fontStyle');
+        if (fontSelect) {
+          fontSelect.addEventListener('change', () => {
+            const fontStyle = getFontStyle();
+            const fontSpec = `${fontStyle.style} ${fontStyle.weight} 40px "${fontStyle.family}"`;
+            document.fonts.load(fontSpec).then(() => generateImage());
+          });
+        }
 		
 		sliders.forEach((s) => {
 		  const slider = document.getElementById(s.id);
@@ -576,7 +550,7 @@
 
             const fontSelect = document.getElementById("fontStyle");
             if (fontSelect) { fontSelect.value = "Inter-400"; }
-            
+
             const c1 = document.getElementById("colour1"); if (c1) c1.value = "#ffb0c5";
             const c2 = document.getElementById("colour2"); if (c2) c2.value = "#99cdf0";
             const ct = document.getElementById("colourText"); if (ct) ct.value = "#000000";
