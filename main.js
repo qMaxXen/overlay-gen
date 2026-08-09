@@ -82,12 +82,6 @@ document.addEventListener("DOMContentLoaded", () => {
           { h: 5, s: 70 },
           { h: 2, s: 85 },
         ];
-        const textSizeCurveDense = [
-          { h: 8, s: 25 },
-          { h: 7, s: 30 },
-          { h: 5, s: 40 },
-          { h: 2, s: 85 },
-        ];
         const textSizeCurveDenser = [
           { h: 8, s: 20 },
           { h: 7, s: 30 },
@@ -100,8 +94,6 @@ document.addEventListener("DOMContentLoaded", () => {
             pixelHeightPercent >= 8
               ? 40
               : clampNumber(interpolateFromCurve(pixelHeightPercent, textSizeCurveDefault), 1, 200);
-        } else if (pixelCount <= 19) {
-          requestedTextSize = clampNumber(interpolateFromCurve(pixelHeightPercent, textSizeCurveDense), 1, 200);
         } else {
           requestedTextSize = clampNumber(interpolateFromCurve(pixelHeightPercent, textSizeCurveDenser), 1, 200);
         }
